@@ -1,0 +1,76 @@
+html {
+	font-family: Georgia, Arial, Helvetica, sans-serif;
+}
+
+.container {
+	text-align: center;
+}
+.overview {
+	border: 1px solid #dddddd;
+	padding: 15px 0;
+	margin: auto;
+	width: 80vw;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	text-align: center;
+	font-size: 1.3rem;
+	font-weight: 600;
+	box-shadow: 0px 0px 20px 5px #eeeeee;
+	border-radius: 15px 15px 0 0;
+}
+
+.current {
+	color: #f23a3b;			
+}
+
+.total {
+	color: #cc1f1e;
+}
+
+.cured {
+	color: #1b944e;					
+}
+
+.dead {
+	color: #4e5964;					
+}
+.time {
+	color: #4e5964;				
+}
+
+table {
+	width: 80vw;
+	border-collapse: collapse;
+	box-shadow: 0px 0px 20px 5px #eeeeee;
+}
+
+thead {
+	background: #bbbbbb;
+}
+
+td, th {	
+	text-align: left;
+	padding: 10px;
+}
+
+tr {
+	border-bottom: 1px solid #f0f6f7;
+	line-height: 2;
+}
+
+.pop:hover {
+	box-shadow: 0px 0px 20px 5px #bbbbbb;
+}
+
+.backtotop {
+	background-color: #f44336;
+	color: white;
+	padding: 14px 25px;
+	text-decoration: none;
+	display: inline-block;
+
+	}
+
+
+

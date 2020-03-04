@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>COVID-19</title>
+	<link rel='stylesheet' href='static/style.css'>
+</head>
+<body>
+	
+	<div class='container'>
+		<a name="top"></a>
+		<div class='overview'>
+			<div class='time'>
+				<div>{{updated_time}}</div>
+				<div>Update Time</div>
+			</div>
+
+			<div class='total'>
+				<div>{{total}}</div>
+				<div>Total Confirmed</div>
+			</div>
+
+			<div class='current'>
+				<div>{{total_curr_confirmed}}</div>
+				<div>Current Confirmed</div>
+			</div>
+
+			<div class='cured'>
+				<div>{{total_cured}}</div>
+				<div>Total Cured</div>
+			</div>
+
+			<div class='dead'>
+				<div>{{total_dead}}</div>
+				<div>Total Dead</div>
+			</div>
+		</div>
+		<br>
+
+		<table align='center'>
+			<thead>
+				<tr>
+					<th>Index</th>
+					<th>Country</th>
+					<th class='total'>Total Confirmed</th>
+					<th class='current'>Current Confirmed</th>
+					<th class='cured'>Cured</th>
+					<th class='dead'>Dead</th>
+				</tr>
+			</thead>
+			<tbody >
+				{% for name, total_confirmed, curr_confirmed, cured, dead in data %}
+					<tr class='pop'>
+						<td>{{loop.index0 + 1}}</td>
+						<td>{{name}}</td>
+						<td class='total'>{{total_confirmed}}</td>
+						<td class='current'>{{curr_confirmed}}</td>
+						<td class='cured'>{{cured}}</td>
+						<td class='dead'>{{dead}}</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+		
+		<a href="#top" class='backtotop'>back to top</a>
+		
+	</div>
+
+</body>
+</html>
+
