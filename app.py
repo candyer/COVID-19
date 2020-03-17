@@ -18,12 +18,12 @@ def home():
 		total_dead += dead
 	return render_template(
 		'home.html', 
-		data=data, 
-		total=total, 
+		data = data, 
+		total = total, 
 		total_curr_confirmed = total_curr_confirmed, 
-		total_cured=total_cured, 
-		total_dead=total_dead, 
-		updated_time=updated_time
+		total_cured = total_cured, 
+		total_dead = total_dead, 
+		updated_time = updated_time
 	)
 
 def convert_timestamp(timestamp):
@@ -37,35 +37,23 @@ def get_info():
 	res = requests.get(url).json()
 	data = []
 	updated_time = 0
-	country_id = {
-		965002: 'Andorra', 
-		974006: 'Dominica',
-		965005: 'Croatia', 
-		955019: 'United Arab Emirates'
-	}
-
-	china_total = china_curr = china_cured = china_dead = 0
 	for country_data in res['results']:
-		if country_data['countryEnglishName'] == 'China':
-			china_curr += country_data["currentConfirmedCount"]
-			china_cured += country_data['curedCount']
-			china_dead += country_data['deadCount']
+		if country_data["countryEnglishName"] == 'China':
+			if country_data["provinceEnglishName"] == 'China':
+				china_total = country_data["confirmedCount"]
+				china_curr = country_data["currentConfirmedCount"]
+				china_cured = country_data['curedCount']
+				china_dead = country_data['deadCount']
+				data.append(['China', china_total, china_curr, china_cured, china_dead])
 		else:
-			tmp = [
-				country_data['countryEnglishName'], 
-				country_data['currentConfirmedCount'] + country_data['curedCount'] + country_data['deadCount'], 
-				country_data['currentConfirmedCount'],
-				country_data['curedCount'], 
-				country_data['deadCount'], 
-			]
-			if country_data["locationId"] in country_id:
-				tmp[0] = country_id[country_data["locationId"]]
-			if tmp[0]:
-				data.append(tmp)
+			if country_data['countryEnglishName']:
+				total = country_data['confirmedCount']
+				curr = country_data['currentConfirmedCount']	
+				cured = country_data['curedCount']		
+				dead = country_data['deadCount']
+				data.append([country_data['countryEnglishName'], total, curr, cured, dead])
 		 
 		updated_time = max(updated_time, country_data["updateTime"])
-	china_total = china_curr + china_cured + china_dead
-	data.append(['China', china_total, china_curr, china_cured, china_dead])
 	return convert_timestamp(updated_time), data
 
 
